@@ -1,0 +1,22 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class ProductFeatureSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $now = now();
+        DB::table('product_feature')->insert([
+            ['product_id' => 1, 'feature_id' => 1, 'created_at' => $now, 'updated_at' => $now],
+            ['product_id' => 1, 'feature_id' => 4, 'created_at' => $now, 'updated_at' => $now],
+            ['product_id' => 2, 'feature_id' => 1, 'created_at' => $now, 'updated_at' => $now],
+            ['product_id' => 2, 'feature_id' => 5, 'created_at' => $now, 'updated_at' => $now],
+            ['product_id' => 3, 'feature_id' => 2, 'created_at' => $now, 'updated_at' => $now],
+            ['product_id' => 4, 'feature_id' => 2, 'created_at' => $now, 'updated_at' => $now],
+        ]);
+    }
+}

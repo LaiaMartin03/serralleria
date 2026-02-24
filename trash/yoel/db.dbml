@@ -1,0 +1,128 @@
+Table CLIENT {
+  id int [pk, increment]
+  name varchar(255) [not null]
+  email varchar(255) [not null, unique]
+  phone varchar(50) [null]
+  phone2 varchar(50) [null]
+  dni varchar(20) [not null, unique]
+  password varchar(255) [not null]
+}
+
+Table PRODUCT_CATEGORY {
+  id int [pk, increment]
+  name varchar(255) [not null]
+}
+
+Table PRODUCT {
+  id int [pk, increment]
+  category_id int [not null, ref: > PRODUCT_CATEGORY.id]
+  name varchar(255) [not null]
+  description text [null]
+  price decimal(10,2) [not null]
+  installation_price decimal(10,2) [null]
+  stock int [not null, default: 0]
+  is_instalable boolean [not null, default: false]
+}
+
+Table FEATURE_NAME {
+  id int [pk, increment]
+  name varchar(255) [not null, unique]
+}
+
+Table FEATURE {
+  id int [pk, increment]
+  feature_name_id int [not null, ref: > FEATURE_NAME.id]
+  value varchar(255) [not null]
+}
+
+Table PRODUCT_FEATURE {
+  product_id int [not null, ref: > PRODUCT.id]
+  feature_id int [not null, ref: > FEATURE.id]
+}
+
+Table PRODUCT_IMAGE {
+  id int [pk, increment]
+  product_id int [not null, ref: > PRODUCT.id]
+  image_path varchar(255) [not null]
+}
+
+Table ORDER {
+  id int [pk, increment]
+  client_id int [not null, ref: > CLIENT.id]
+
+  order_date timestamp [not null]
+  shipping_date timestamp [null]
+  installation_date timestamp [null]
+
+  status varchar(100) [not null]
+  displacement_price decimal(10,2) [null, note: 'Precio de desplazamiento']
+
+  payment_method varchar(100) [not null]
+
+  shipping_address varchar(255) [not null]
+  installation_address varchar(255) [null]
+}
+
+Table ORDER_DETAIL {
+  id int [pk, increment]
+  order_id int [not null, ref: > ORDER.id]
+  product_id int [null, ref: > PRODUCT.id, note: 'One of product_id or pack_id must be set']
+  pack_id int [null, ref: > PACKS.id, note: 'One of product_id or pack_id must be set']
+  quantity int [not null]
+  unit_price decimal(10,2) [not null]
+  offer decimal(10,2) [null, note: 'Discount amount applied']
+  requires_installation boolean [not null, default: false]
+}
+
+Table ADMIN {
+  id int [pk, increment]
+  username varchar(255) [not null, unique]
+  password varchar(255) [not null]
+}
+
+Table ADDRESSES {
+  id int [pk, increment]
+  client_id int [not null, ref: > CLIENT.id]
+  street varchar(255) [not null]
+  city varchar(100) [not null]
+  postal_code varchar(20) [null]
+}
+
+Table PACKS {
+  id int [pk, increment]
+  price decimal(10,2) [not null]
+  is_instalable boolean [not null, default: false]
+  status varchar(50) [not null]
+}
+
+Table PACK_IMAGE {
+  id int [pk, increment]
+  pack_id int [not null, ref: > PACKS.id]
+  image_path varchar(255) [not null]
+}
+
+Table PACK_DETAILS {
+  id int [pk, increment]
+  pack_id int [not null, ref: > PACKS.id]
+  product_id int [not null, ref: > PRODUCT.id]
+}
+
+Table PERSONALIZED_SOLUTION {
+  id int [pk, increment]
+  client_id int [null, ref: > CLIENT.id]
+  email varchar(255) [null]
+  phone varchar(50) [null]
+  address varchar(255) [null]
+  problem_description text [null]
+  resolution text [null]
+  status varchar(100) [not null]
+}
+
+Table PERSONALIZED_SOLUTION_ATTACHMENT {
+  id int [pk, increment]
+  personalized_solution_id int [not null, ref: > PERSONALIZED_SOLUTION.id]
+  file_path varchar(500) [not null]
+  original_filename varchar(255) [null]
+  file_type varchar(50) [null, note: 'e.g. image, document']
+}
+
