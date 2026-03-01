@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            ClientContactSeeder::class,
             AdminSeeder::class,
             ProductCategorySeeder::class,
             FeatureNameSeeder::class,
@@ -20,8 +21,10 @@ class DatabaseSeeder extends Seeder
             AddressSeeder::class,
             PackSeeder::class,
             PackImageSeeder::class,
-            OrderSeeder::class,
             PackDetailSeeder::class,
+            OrderSeeder::class,
+            OrderAddressSeeder::class,
+            PaymentSeeder::class,
             OrderDetailSeeder::class,
             PersonalizedSolutionSeeder::class,
             PersonalizedSolutionAttachmentSeeder::class,

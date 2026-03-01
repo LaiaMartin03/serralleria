@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('packs', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 255);
+            $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
-            $table->boolean('is_instalable')->default(false);
-            $table->string('status', 50);
-            $table->timestamps();
+            $table->boolean('is_trending')->default(false)->comment('Trending pack');
+            $table->boolean('is_active')->default(true)->comment('Disable without deleting');
         });
     }
 

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('feature_names', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
+            $table->string('name', 255)->unique();
+            $table->boolean('is_active')->default(true)->comment('Disable without deleting');
         });
     }
 

@@ -9,15 +9,14 @@ class FeatureSeeder extends Seeder
 {
     public function run(): void
     {
-        $now = now();
         DB::table('features')->insert([
-            ['feature_name_id' => 1, 'value' => 'Fusta', 'created_at' => $now, 'updated_at' => $now],
-            ['feature_name_id' => 1, 'value' => 'Alumini', 'created_at' => $now, 'updated_at' => $now],
-            ['feature_name_id' => 1, 'value' => 'PVC', 'created_at' => $now, 'updated_at' => $now],
-            ['feature_name_id' => 2, 'value' => 'Blanc', 'created_at' => $now, 'updated_at' => $now],
-            ['feature_name_id' => 2, 'value' => 'Maró', 'created_at' => $now, 'updated_at' => $now],
-            ['feature_name_id' => 3, 'value' => '80cm', 'created_at' => $now, 'updated_at' => $now],
-            ['feature_name_id' => 3, 'value' => '120x100', 'created_at' => $now, 'updated_at' => $now],
+            ['feature_name_id' => 1, 'value' => 'Fusta', 'is_active' => true],
+            ['feature_name_id' => 1, 'value' => 'Alumini', 'is_active' => true],
+            ['feature_name_id' => 1, 'value' => 'PVC', 'is_active' => true],
+            ['feature_name_id' => 2, 'value' => 'Blanc', 'is_active' => true],
+            ['feature_name_id' => 2, 'value' => 'Maró', 'is_active' => true],
+            ['feature_name_id' => 3, 'value' => '80cm', 'is_active' => true],
+            ['feature_name_id' => 3, 'value' => '120x100', 'is_active' => true],
         ]);
     }
 }

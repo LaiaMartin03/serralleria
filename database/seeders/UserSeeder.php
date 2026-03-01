@@ -2,48 +2,39 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
+    /**
+     * Seeds clients table (account: person or company).
+     */
     public function run(): void
     {
-        $now = now();
-        $users = [
+        DB::table('clients')->insert([
             [
-                'name' => 'Maria García',
-                'email' => 'maria.garcia@example.com',
-                'phone' => '612345678',
-                'phone2' => '934567890',
-                'dni' => '12345678A',
-                'password' => 'password',
-                'created_at' => $now,
-                'updated_at' => $now,
+                'type' => 'person',
+                'identification' => '12345678A',
+                'login_email' => 'maria.garcia@example.com',
+                'password' => Hash::make('password'),
+                'is_active' => true,
             ],
             [
-                'name' => 'Joan Martínez',
-                'email' => 'joan.martinez@example.com',
-                'phone' => '698765432',
-                'phone2' => null,
-                'dni' => '87654321B',
-                'password' => 'password',
-                'created_at' => $now,
-                'updated_at' => $now,
+                'type' => 'person',
+                'identification' => '87654321B',
+                'login_email' => 'joan.martinez@example.com',
+                'password' => Hash::make('password'),
+                'is_active' => true,
             ],
             [
-                'name' => 'Anna López',
-                'email' => 'anna.lopez@example.com',
-                'phone' => '655443322',
-                'phone2' => '931122334',
-                'dni' => '11223344C',
-                'password' => 'password',
-                'created_at' => $now,
-                'updated_at' => $now,
+                'type' => 'person',
+                'identification' => '11223344C',
+                'login_email' => 'anna.lopez@example.com',
+                'password' => Hash::make('password'),
+                'is_active' => true,
             ],
-        ];
-        foreach ($users as $data) {
-            User::create($data);
-        }
+        ]);
     }
 }

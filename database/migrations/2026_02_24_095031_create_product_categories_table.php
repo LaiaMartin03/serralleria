@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->timestamps();
+            $table->string('code', 50)->nullable()->unique()->comment('Category code');
+            $table->string('name', 255);
+            $table->boolean('is_active')->default(true)->comment('Disable without deleting');
         });
     }
 

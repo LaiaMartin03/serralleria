@@ -9,11 +9,10 @@ class FeatureNameSeeder extends Seeder
 {
     public function run(): void
     {
-        $now = now();
         DB::table('feature_names')->insert([
-            ['name' => 'Material', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Color', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Mida', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'Material', 'is_active' => true],
+            ['name' => 'Color', 'is_active' => true],
+            ['name' => 'Mida', 'is_active' => true],
         ]);
     }
 }

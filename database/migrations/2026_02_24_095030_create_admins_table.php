@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->timestamps();
+            $table->string('username', 255)->unique();
+            $table->string('password', 255);
+            $table->boolean('is_active')->default(true)->comment('Soft delete');
         });
     }
 

@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone', 50)->nullable()->after('email');
-            $table->string('phone2', 50)->nullable()->after('phone');
-            $table->string('dni', 20)->nullable()->unique()->after('phone2');
+        Schema::create('client_contacts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('client_id')->constrained('clients');
+            $table->string('name', 255)->comment('First name');
+            $table->string('surname', 255)->nullable()->comment('Last name');
+            $table->string('phone', 50)->nullable();
+            $table->string('phone2', 50)->nullable();
+            $table->string('email', 255)->nullable()->comment('Contact email (optional)');
+            $table->boolean('is_primary')->default(false)->comment('Main contact for this client');
+            $table->boolean('is_active')->default(true)->comment('Soft delete');
         });
     }
 
@@ -23,8 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['phone', 'phone2', 'dni']);
-        });
+        Schema::dropIfExists('client_contacts');
     }
 };

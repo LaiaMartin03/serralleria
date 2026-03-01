@@ -7,34 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class AddressSeeder extends Seeder
 {
+    /**
+     * Seeds client_addresses (shipping, installation, etc. per client).
+     */
     public function run(): void
     {
-        $now = now();
-        DB::table('addresses')->insert([
-            [
-                'client_id' => 1,
-                'street' => 'Carrer Major 12',
-                'city' => 'Barcelona',
-                'postal_code' => '08001',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'client_id' => 2,
-                'street' => 'Plaça Catalunya 5',
-                'city' => 'Barcelona',
-                'postal_code' => '08002',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'client_id' => 3,
-                'street' => 'Avinguda Diagonal 100',
-                'city' => 'Barcelona',
-                'postal_code' => '08018',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
+        DB::table('client_addresses')->insert([
+            ['client_id' => 1, 'type' => 'shipping', 'label' => 'Casa', 'street' => 'Carrer Major 12', 'city' => 'Barcelona', 'province' => 'Barcelona', 'postal_code' => '08001', 'is_active' => true],
+            ['client_id' => 2, 'type' => 'shipping', 'label' => null, 'street' => 'Plaça Catalunya 5', 'city' => 'Barcelona', 'province' => 'Barcelona', 'postal_code' => '08002', 'is_active' => true],
+            ['client_id' => 3, 'type' => 'shipping', 'label' => null, 'street' => 'Avinguda Diagonal 100', 'city' => 'Barcelona', 'province' => 'Barcelona', 'postal_code' => '08018', 'is_active' => true],
         ]);
     }
 }

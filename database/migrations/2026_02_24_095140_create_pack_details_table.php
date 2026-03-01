@@ -8,14 +8,15 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Products that belong to a pack.
      */
     public function up(): void
     {
-        Schema::create('pack_details', function (Blueprint $table) {
+        Schema::create('pack_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pack_id')->constrained('packs');
             $table->foreignId('product_id')->constrained('products');
-            $table->timestamps();
+            $table->boolean('is_active')->default(true);
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pack_details');
+        Schema::dropIfExists('pack_items');
     }
 };

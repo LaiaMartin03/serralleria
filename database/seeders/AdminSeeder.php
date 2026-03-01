@@ -10,26 +10,10 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        $now = now();
         DB::table('admins')->insert([
-            [
-                'username' => 'admin',
-                'password' => Hash::make('password'),
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'username' => 'manager',
-                'password' => Hash::make('password'),
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'username' => 'support',
-                'password' => Hash::make('password'),
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
+            ['username' => 'admin', 'password' => Hash::make('password'), 'is_active' => true],
+            ['username' => 'manager', 'password' => Hash::make('password'), 'is_active' => true],
+            ['username' => 'support', 'password' => Hash::make('password'), 'is_active' => true],
         ]);
     }
 }
