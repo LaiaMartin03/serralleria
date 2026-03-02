@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('product_categories');
+            $table->foreignId('variant_group_id')->nullable()->constrained('product_variant_groups')->nullOnDelete()->comment('Optional; products with same id are siblings/variants');
             $table->string('code', 50)->nullable()->unique()->comment('Product code');
             $table->string('name', 255);
             $table->text('description')->nullable();
