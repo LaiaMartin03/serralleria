@@ -1,11 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
+import Menu from './components/menu'
+
 function App() {
     return (
-        <div className="p-10 text-3xl font-bold">
-            Hola Laia 🚀 React + Laravel funcionando
-        </div>
+        <>
+            <Menu />
+            <div className="p-10 text-3xl font-bold">
+                Hola Laia 🚀 React + Laravel funcionando
+            </div>
+        </>
     )
 }
 

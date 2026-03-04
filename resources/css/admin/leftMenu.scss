@@ -1,0 +1,27 @@
+.menu-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-setting {
+    font-weight: bold;
+    position: relative;
+    background-color: aliceblue;
+    border-radius: 8px;
+    padding: 10px 20px;
+    width: 100%;
+
+    ::after {
+        content: "";
+        left: -10px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: red;
+        width: 5px;
+        border-radius: 100px;
+        height: 80%;
+        display: block;
+        position: absolute;
+    }
+}
