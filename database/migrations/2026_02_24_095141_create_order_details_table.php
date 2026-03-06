@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('installation_price', 10, 2)->nullable()->comment('Optional installation price for this line');
             $table->integer('extra_keys_qty')->default(0)->comment('Number of extra keys requested');
             $table->decimal('extra_key_unit_price', 10, 2)->nullable()->comment('Price per extra key at order time');
+            $table->timestamps();
         });
     }
 
