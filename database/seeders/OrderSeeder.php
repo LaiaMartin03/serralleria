@@ -15,7 +15,7 @@ class OrderSeeder extends Seeder
         $now = now();
         $rows = [];
         $kinds = ['order', 'order', 'order', 'cart', 'order', 'order', 'order', 'cart', 'order', 'order', 'order', 'cart', 'order', 'order', 'order', 'order', 'cart', 'order', 'order', 'order'];
-        $statuses = ['sent', 'pending', 'installation_pending', null, 'installation_confirmed', 'sent', 'pending', null, 'sent', 'installation_pending', 'pending', null, 'sent', 'installation_confirmed', 'pending', 'sent', null, 'installation_pending', 'sent', 'pending'];
+        $statuses = ['sent', 'pending', 'in_transit', null, 'installation_confirmed', 'sent', 'pending', null, 'sent', 'installation_pending', 'pending', null, 'in_transit', 'installation_confirmed', 'pending', 'sent', null, 'installation_pending', 'sent', 'pending'];
         for ($i = 0; $i < 20; $i++) {
             $clientId = ($i % 20) + 1;
             $isOrder = $kinds[$i] === 'order';

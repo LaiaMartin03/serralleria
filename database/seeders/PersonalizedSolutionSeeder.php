@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 class PersonalizedSolutionSeeder extends Seeder
 {
     /**
-     * Seeds personalized_solutions. Can be independent of client and order. status: pending_review | reviewed | client_contacted. Min 20 records.
+     * Seeds personalized_solutions. Can be independent of client and order. status: pending_review | reviewed | client_contacted | rejected | completed. Min 20 records.
      */
     public function run(): void
     {
-        $statuses = ['pending_review', 'reviewed', 'client_contacted', 'pending_review', 'reviewed', 'client_contacted', 'pending_review', 'reviewed', 'pending_review', 'client_contacted', 'pending_review', 'reviewed', 'client_contacted', 'pending_review', 'reviewed', 'pending_review', 'client_contacted', 'reviewed', 'pending_review', 'client_contacted'];
+        $statuses = ['pending_review', 'reviewed', 'client_contacted', 'rejected', 'completed', 'pending_review', 'reviewed', 'client_contacted', 'pending_review', 'completed', 'pending_review', 'reviewed', 'client_contacted', 'rejected', 'reviewed', 'pending_review', 'client_contacted', 'reviewed', 'pending_review', 'completed'];
         $problems = [
             'Necessito una porta que s\'adapti a un marc irregular.',
             'Consulta sobre finestres per a un balcó corbat.',
@@ -50,7 +50,7 @@ class PersonalizedSolutionSeeder extends Seeder
                 'address_postal_code' => $i % 2 === 0 ? '08' . str_pad((string)($i + 1), 3, '0', STR_PAD_LEFT) : null,
                 'address_note' => $i % 5 === 0 ? 'Disponible a partir de les 15h' : null,
                 'problem_description' => $problems[$i],
-                'resolution' => in_array($statuses[$i], ['reviewed', 'client_contacted']) ? 'S\'ha recomanat el model adequat i pressupost enviat.' : null,
+                'resolution' => in_array($statuses[$i], ['reviewed', 'client_contacted', 'completed']) ? 'S\'ha recomanat el model adequat i pressupost enviat.' : null,
                 'status' => $statuses[$i],
                 'is_active' => true,
             ];

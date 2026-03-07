@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('street', 255);
             $table->string('city', 100);
             $table->string('province', 100)->nullable()->comment('Provincia');
-            $table->string('postal_code', 20)->nullable();
+            $table->string('postal_code', 20)->nullable()->comment('Required at application level (validation)');
             $table->text('note')->nullable()->comment('e.g. If I\'m not there..., I\'ll be there at 3...');
             $table->timestamps();
         });
