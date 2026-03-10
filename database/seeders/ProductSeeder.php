@@ -7,69 +7,35 @@ use Illuminate\Support\Facades\DB;
 
 class ProductSeeder extends Seeder
 {
+    /**
+     * Seeds products. Min 20 records. Some use variant_group_id.
+     */
     public function run(): void
     {
-        DB::table('products')->insert([
-            [
-                'category_id' => 1,
-                'code' => 'PB-80',
-                'name' => 'Porta blindada 80cm',
-                'description' => 'Porta d\'entrada blindada, 80 cm d\'amplada.',
-                'price' => 450.00,
-                'stock' => 10,
-                'is_installable' => true,
-                'installation_price' => 85.00,
-                'is_extra_keys_available' => true,
-                'extra_key_unit_price' => 25.00,
-                'is_featured' => true,
-                'is_trending' => false,
-                'is_active' => true,
-            ],
-            [
-                'category_id' => 1,
-                'code' => 'PF-90',
-                'name' => 'Porta de fusta 90cm',
-                'description' => 'Porta de fusta massissa, 90 cm.',
-                'price' => 320.00,
-                'stock' => 5,
-                'is_installable' => true,
-                'installation_price' => 75.00,
-                'is_extra_keys_available' => false,
-                'extra_key_unit_price' => null,
-                'is_featured' => false,
-                'is_trending' => false,
-                'is_active' => true,
-            ],
-            [
-                'category_id' => 2,
-                'code' => 'FC-120x100',
-                'name' => 'Finestra corredissa 120x100',
-                'description' => 'Finestra corredissa d\'alumini, 120x100 cm.',
-                'price' => 280.00,
-                'stock' => 15,
-                'is_installable' => true,
-                'installation_price' => 65.00,
-                'is_extra_keys_available' => false,
-                'extra_key_unit_price' => null,
-                'is_featured' => false,
-                'is_trending' => true,
-                'is_active' => true,
-            ],
-            [
-                'category_id' => 3,
-                'code' => 'PE-EST',
-                'name' => 'Persiana enrollable',
-                'description' => 'Persiana enrollable aluminio, mida estàndard.',
-                'price' => 95.00,
-                'stock' => 30,
-                'is_installable' => false,
-                'installation_price' => null,
-                'is_extra_keys_available' => false,
-                'extra_key_unit_price' => null,
-                'is_featured' => false,
-                'is_trending' => false,
-                'is_active' => true,
-            ],
-        ]);
+        $products = [
+            ['category_id' => 1, 'variant_group_id' => 1, 'code' => 'PB-80', 'name' => 'Porta blindada 80cm', 'description' => 'Porta d\'entrada blindada, 80 cm d\'amplada.', 'price' => 450.00, 'stock' => 10, 'is_installable' => true, 'installation_price' => 85.00, 'is_extra_keys_available' => true, 'extra_key_unit_price' => 25.00, 'is_featured' => true, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 1, 'variant_group_id' => null, 'code' => 'PF-90', 'name' => 'Porta de fusta 90cm', 'description' => 'Porta de fusta massissa, 90 cm.', 'price' => 320.00, 'stock' => 5, 'is_installable' => true, 'installation_price' => 75.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 2, 'variant_group_id' => 3, 'code' => 'FC-120x100', 'name' => 'Finestra corredissa 120x100', 'description' => 'Finestra corredissa d\'alumini, 120x100 cm.', 'price' => 280.00, 'stock' => 15, 'is_installable' => true, 'installation_price' => 65.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => true, 'is_active' => true],
+            ['category_id' => 3, 'variant_group_id' => null, 'code' => 'PE-EST', 'name' => 'Persiana enrollable', 'description' => 'Persiana enrollable alumini, mida estàndard.', 'price' => 95.00, 'stock' => 30, 'is_installable' => false, 'installation_price' => null, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 1, 'variant_group_id' => 2, 'code' => 'PB-90', 'name' => 'Porta blindada 90cm', 'description' => 'Porta blindada 90 cm.', 'price' => 480.00, 'stock' => 8, 'is_installable' => true, 'installation_price' => 90.00, 'is_extra_keys_available' => true, 'extra_key_unit_price' => 25.00, 'is_featured' => true, 'is_trending' => true, 'is_active' => true],
+            ['category_id' => 2, 'variant_group_id' => null, 'code' => 'FV-80x200', 'name' => 'Finestra batent 80x200', 'description' => 'Finestra batent 80x200 cm.', 'price' => 220.00, 'stock' => 12, 'is_installable' => true, 'installation_price' => 60.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 4, 'variant_group_id' => null, 'code' => 'RE-100x150', 'name' => 'Reixa seguretat 100x150', 'description' => 'Reixa de seguretat 100x150 cm.', 'price' => 180.00, 'stock' => 20, 'is_installable' => true, 'installation_price' => 55.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => true, 'is_active' => true],
+            ['category_id' => 5, 'variant_group_id' => null, 'code' => 'PT-250', 'name' => 'Portó tàctil 250cm', 'description' => 'Portó tàctil per garatge 250 cm.', 'price' => 890.00, 'stock' => 4, 'is_installable' => true, 'installation_price' => 150.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => true, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 6, 'variant_group_id' => null, 'code' => 'TC-110', 'name' => 'Tancament cortina 110cm', 'description' => 'Tancament tipus cortina 110 cm.', 'price' => 140.00, 'stock' => 25, 'is_installable' => false, 'installation_price' => null, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 7, 'variant_group_id' => null, 'code' => 'PA-EST', 'name' => 'Porter automàtic estàndard', 'description' => 'Porter automàtic estàndard.', 'price' => 320.00, 'stock' => 6, 'is_installable' => true, 'installation_price' => 95.00, 'is_extra_keys_available' => true, 'extra_key_unit_price' => 15.00, 'is_featured' => false, 'is_trending' => true, 'is_active' => true],
+            ['category_id' => 8, 'variant_group_id' => null, 'code' => 'VD-100x120', 'name' => 'Vidre doble 100x120', 'description' => 'Vidre doble acristallat 100x120 cm.', 'price' => 195.00, 'stock' => 18, 'is_installable' => true, 'installation_price' => 50.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 9, 'variant_group_id' => 4, 'code' => 'PE-80', 'name' => 'Persiana enrollable 80mm', 'description' => 'Persiana enrollable 80 mm lamel·les.', 'price' => 88.00, 'stock' => 40, 'is_installable' => false, 'installation_price' => null, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 10, 'variant_group_id' => null, 'code' => 'PB-75', 'name' => 'Porta blindada 75cm', 'description' => 'Porta blindada 75 cm.', 'price' => 420.00, 'stock' => 7, 'is_installable' => true, 'installation_price' => 80.00, 'is_extra_keys_available' => true, 'extra_key_unit_price' => 25.00, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 11, 'variant_group_id' => null, 'code' => 'PF-80', 'name' => 'Porta fusta 80cm', 'description' => 'Porta de fusta 80 cm.', 'price' => 290.00, 'stock' => 9, 'is_installable' => true, 'installation_price' => 70.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 12, 'variant_group_id' => null, 'code' => 'MC-90', 'name' => 'Marc contramarc 90cm', 'description' => 'Marc i contramarc 90 cm.', 'price' => 110.00, 'stock' => 35, 'is_installable' => true, 'installation_price' => 45.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 13, 'variant_group_id' => null, 'code' => 'TV-100', 'name' => 'Tornavent 100cm', 'description' => 'Tornavent 100 cm amplada.', 'price' => 165.00, 'stock' => 14, 'is_installable' => true, 'installation_price' => 52.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => true, 'is_active' => true],
+            ['category_id' => 14, 'variant_group_id' => null, 'code' => 'CL-80x120', 'name' => 'Celosia 80x120', 'description' => 'Celosia alumini 80x120 cm.', 'price' => 130.00, 'stock' => 22, 'is_installable' => true, 'installation_price' => 48.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 15, 'variant_group_id' => null, 'code' => 'PG-220', 'name' => 'Porta garatge 220cm', 'description' => 'Porta de garatge 220 cm.', 'price' => 720.00, 'stock' => 3, 'is_installable' => true, 'installation_price' => 140.00, 'is_extra_keys_available' => true, 'extra_key_unit_price' => 20.00, 'is_featured' => true, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 16, 'variant_group_id' => null, 'code' => 'RS-90x200', 'name' => 'Reixa seguretat 90x200', 'description' => 'Reixa seguretat 90x200 cm.', 'price' => 195.00, 'stock' => 11, 'is_installable' => true, 'installation_price' => 58.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 17, 'variant_group_id' => null, 'code' => 'ACC-PANY', 'name' => 'Pany reforçat', 'description' => 'Pany de seguretat reforçat.', 'price' => 45.00, 'stock' => 50, 'is_installable' => false, 'installation_price' => null, 'is_extra_keys_available' => true, 'extra_key_unit_price' => 8.00, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 2, 'variant_group_id' => null, 'code' => 'FC-100x80', 'name' => 'Finestra corredissa 100x80', 'description' => 'Finestra corredissa 100x80 cm.', 'price' => 245.00, 'stock' => 16, 'is_installable' => true, 'installation_price' => 62.00, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => false, 'is_active' => true],
+            ['category_id' => 18, 'variant_group_id' => null, 'code' => 'OBR-KIT', 'name' => 'Kit obres bàsic', 'description' => 'Kit bàsic per obres i reformes.', 'price' => 75.00, 'stock' => 60, 'is_installable' => false, 'installation_price' => null, 'is_extra_keys_available' => false, 'extra_key_unit_price' => null, 'is_featured' => false, 'is_trending' => true, 'is_active' => true],
+        ];
+        DB::table('products')->insert($products);
     }
 }

@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('street', 255);
             $table->string('city', 100);
             $table->string('province', 100)->nullable()->comment('Provincia');
-            $table->string('postal_code', 20)->nullable();
+            $table->string('postal_code', 20)->nullable()->comment('Required at application level (validation)');
+            $table->boolean('is_primary')->default(false)->comment('Main address for this client');
             $table->boolean('is_active')->default(true)->comment('Soft delete');
+            $table->timestamps();
         });
     }
 

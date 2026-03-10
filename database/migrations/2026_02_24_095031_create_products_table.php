@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('is_featured')->default(false)->comment('Featured on homepage');
             $table->boolean('is_trending')->default(false)->comment('Trending product');
             $table->boolean('is_active')->default(true)->comment('Disable without deleting');
+            $table->timestamps();
         });
     }
 

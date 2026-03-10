@@ -7,13 +7,38 @@ use Illuminate\Support\Facades\DB;
 
 class PersonalizedSolutionAttachmentSeeder extends Seeder
 {
+    /**
+     * Seeds personalized_solution_attachments. Min 20 records (references files in storage).
+     */
     public function run(): void
     {
-        DB::table('personalized_solution_attachments')->insert([
-            ['personalized_solution_id' => 1, 'storage_path' => 'solutions/1/foto-marc.jpg', 'original_filename' => 'foto-marc.jpg', 'size_bytes' => 256000, 'checksum' => null, 'content_type' => 'image/jpeg', 'description' => null, 'is_active' => true],
-            ['personalized_solution_id' => 1, 'storage_path' => 'solutions/1/pla.pdf', 'original_filename' => 'plà.pdf', 'size_bytes' => 120000, 'checksum' => null, 'content_type' => 'application/pdf', 'description' => null, 'is_active' => true],
-            ['personalized_solution_id' => 2, 'storage_path' => 'solutions/2/balco.jpg', 'original_filename' => 'balco.jpg', 'size_bytes' => 310000, 'checksum' => null, 'content_type' => 'image/jpeg', 'description' => null, 'is_active' => true],
-            ['personalized_solution_id' => 3, 'storage_path' => 'solutions/3/terrassa.pdf', 'original_filename' => 'terrassa.pdf', 'size_bytes' => 98000, 'checksum' => null, 'content_type' => 'application/pdf', 'description' => null, 'is_active' => true],
-        ]);
+        $rows = [];
+        for ($i = 1; $i <= 20; $i++) {
+            $ext = $i % 3 === 0 ? 'pdf' : 'jpg';
+            $ct = $ext === 'pdf' ? 'application/pdf' : 'image/jpeg';
+            $rows[] = [
+                'personalized_solution_id' => $i,
+                'storage_path' => "solutions/{$i}/attach-1.{$ext}",
+                'original_filename' => "fitxer-{$i}.{$ext}",
+                'size_bytes' => 100000 + $i * 5000,
+                'checksum' => null,
+                'content_type' => $ct,
+                'description' => $i % 4 === 0 ? 'Plà o document adjunt' : null,
+                'is_active' => true,
+            ];
+        }
+        for ($i = 1; $i <= 8; $i++) {
+            $rows[] = [
+                'personalized_solution_id' => $i,
+                'storage_path' => "solutions/{$i}/foto-marc.jpg",
+                'original_filename' => "foto-marc-{$i}.jpg",
+                'size_bytes' => 250000 + $i * 10000,
+                'checksum' => null,
+                'content_type' => 'image/jpeg',
+                'description' => null,
+                'is_active' => true,
+            ];
+        }
+        DB::table('personalized_solution_attachments')->insert($rows);
     }
 }

@@ -8,36 +8,26 @@ use Illuminate\Support\Facades\DB;
 class OrderSeeder extends Seeder
 {
     /**
-     * Seeds orders. kind: cart | order; status only when kind=order (Catalan values).
+     * Seeds orders. kind: cart | order | like; status only when kind=order. Min 20 records.
      */
     public function run(): void
     {
         $now = now();
-        DB::table('orders')->insert([
-            [
-                'client_id' => 1,
-                'kind' => 'order',
-                'status' => 'sent',
-                'order_date' => $now->copy()->subDays(10),
-                'shipping_date' => $now->copy()->subDays(5),
-                'shipping_price' => 12.00,
-            ],
-            [
-                'client_id' => 2,
-                'kind' => 'order',
-                'status' => 'pending',
-                'order_date' => $now->copy()->subDays(3),
-                'shipping_date' => null,
-                'shipping_price' => null,
-            ],
-            [
-                'client_id' => 3,
-                'kind' => 'order',
-                'status' => 'installation_pending',
-                'order_date' => $now->copy()->subDays(1),
-                'shipping_date' => null,
-                'shipping_price' => 15.00,
-            ],
-        ]);
+        $rows = [];
+        $kinds = ['order', 'order', 'order', 'cart', 'order', 'order', 'order', 'cart', 'order', 'order', 'order', 'cart', 'order', 'order', 'order', 'order', 'cart', 'order', 'order', 'order'];
+        $statuses = ['sent', 'pending', 'in_transit', null, 'installation_confirmed', 'sent', 'pending', null, 'sent', 'installation_pending', 'pending', null, 'in_transit', 'installation_confirmed', 'pending', 'sent', null, 'installation_pending', 'sent', 'pending'];
+        for ($i = 0; $i < 20; $i++) {
+            $clientId = ($i % 20) + 1;
+            $isOrder = $kinds[$i] === 'order';
+            $rows[] = [
+                'client_id' => $clientId,
+                'kind' => $kinds[$i],
+                'status' => $statuses[$i],
+                'order_date' => $isOrder ? $now->copy()->subDays(30 - $i) : null,
+                'shipping_date' => $isOrder && $i % 3 === 0 ? $now->copy()->subDays(28 - $i) : null,
+                'shipping_price' => $isOrder && $i % 2 === 0 ? 10.00 + ($i % 5) * 2 : null,
+            ];
+        }
+        DB::table('orders')->insert($rows);
     }
 }
