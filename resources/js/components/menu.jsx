@@ -1,6 +1,6 @@
-import '../css/components/Menu.scss';
 
 import { ShoppingCart, Heart, UserRound } from 'lucide-react';
+import './Menu.scss';
 
 const Menu = () => {
     return (

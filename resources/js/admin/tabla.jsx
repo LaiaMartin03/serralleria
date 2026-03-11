@@ -1,4 +1,4 @@
-import '../css/admin/Tabla.scss';
+import 'Tabla.scss';
 
 const Tabla = () => {
     return (

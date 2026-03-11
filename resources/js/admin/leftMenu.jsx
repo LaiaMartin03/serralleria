@@ -1,4 +1,4 @@
-import '../css/admin/leftMenu.scss';
+import 'LeftMenu.scss';
 
 const leftMenu = () => {
     return (
